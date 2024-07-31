@@ -2,8 +2,11 @@
   <h2>Recipes <mat-icon aria-label="Recipes icon" fontIcon="restaurant_menu"></mat-icon></h2>
   @for (recipe of recipes$ | async; track recipe.id) {
   <mat-list-item>
-    <span matListItemTitle>{{recipe.name}}</span>
-    <span>Ingredients</span>
+    <span [ngClass]="{ 'highlighted': recipe.isHighlighted }">
+      {{recipe.name}}
+    </span>
+    <br>
+    <span>{{ recipe.ingredientNames.join(', ') }}</span>
   </mat-list-item>
   }
 </mat-list>

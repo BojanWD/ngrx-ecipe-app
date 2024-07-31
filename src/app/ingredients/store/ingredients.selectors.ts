@@ -13,3 +13,8 @@ export const selectIngredientError = createSelector(
   selectIngredientState,
   (state: IngredientState) => state.error
 );
+
+export const selectSelectedIngredientIds = createSelector(
+  selectIngredientState,
+  (state: IngredientState) => state.selectedIngredientIds
+);

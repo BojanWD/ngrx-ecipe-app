@@ -3,16 +3,19 @@ import {
   loadIngredients,
   loadIngredientsSuccess,
   loadIngredientsFailure,
+  selectIngredients,
 } from './ingredients.actions';
-import { IngredientData } from '../models/ingredient-data.interface';
+import { Ingredient } from '../models/ingredient.model';
 
 export interface IngredientState {
-  ingredients: IngredientData[];
+  ingredients: Ingredient[];
+  selectedIngredientIds: number[];
   error: string | null;
 }
 
 export const initialState: IngredientState = {
   ingredients: [],
+  selectedIngredientIds: [],
   error: null,
 };
 
@@ -23,5 +26,9 @@ export const ingredientReducer = createReducer(
     ...state,
     ingredients,
   })),
-  on(loadIngredientsFailure, (state, { error }) => ({ ...state, error }))
+  on(loadIngredientsFailure, (state, { error }) => ({ ...state, error })),
+  on(selectIngredients, (state, { ingredientIds }) => ({
+    ...state,
+    selectedIngredientIds: ingredientIds,
+  }))
 );
