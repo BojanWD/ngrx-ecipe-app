@@ -4,13 +4,13 @@
     <mat-icon aria-label="Recipes icon" fontIcon="restaurant_menu"></mat-icon>
   </h2>
   @for (recipe of recipes$ | async; track recipe.id) {
-  <mat-list-item>
-    <span [ngClass]="{ highlighted: recipe.isHighlighted }">
+  <mat-list-item [ngClass]="{completed: recipe.completed}">
+    <span [ngClass]="{ highlighted: recipe.isHighlighted && !recipe.completed }">
       {{ recipe.name }}
     </span>
     <br />
     @for (ingredient of recipe.ingredientsList; track ingredient.name; let i = $index) {
-    <span [ngClass]="{ highlighted: ingredient.isHighlighted }">{{ ingredient.name }}</span>
+    <span [ngClass]="{ highlighted: ingredient.isHighlighted && !recipe.completed }">{{ ingredient.name }}</span>
     @if (i < recipe.ingredientsList.length - 1) { <span>, </span> }
       }
   </mat-list-item>

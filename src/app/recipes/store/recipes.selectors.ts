@@ -35,11 +35,15 @@ export const selectRecipeListItems = createSelector(
       });
 
       const isHighlighted = ingredientsList.some((ing) => ing.isHighlighted);
+      const completed = recipe.ingredientIds.every((id) =>
+        selectedIngredientIds.includes(id)
+      );
 
       return {
         ...recipe,
         ingredientsList,
         isHighlighted,
+        completed,
       };
     })
 );
