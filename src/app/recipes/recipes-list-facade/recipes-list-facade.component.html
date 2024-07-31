@@ -1,12 +1,18 @@
 <mat-list>
-  <h2>Recipes <mat-icon aria-label="Recipes icon" fontIcon="restaurant_menu"></mat-icon></h2>
+  <h2>
+    Recipes
+    <mat-icon aria-label="Recipes icon" fontIcon="restaurant_menu"></mat-icon>
+  </h2>
   @for (recipe of recipes$ | async; track recipe.id) {
   <mat-list-item>
-    <span [ngClass]="{ 'highlighted': recipe.isHighlighted }">
-      {{recipe.name}}
+    <span [ngClass]="{ highlighted: recipe.isHighlighted }">
+      {{ recipe.name }}
     </span>
-    <br>
-    <span>{{ recipe.ingredientNames.join(', ') }}</span>
+    <br />
+    @for (ingredient of recipe.ingredientsList; track ingredient.name; let i = $index) {
+    <span [ngClass]="{ highlighted: ingredient.isHighlighted }">{{ ingredient.name }}</span>
+    @if (i < recipe.ingredientsList.length - 1) { <span>, </span> }
+      }
   </mat-list-item>
   }
 </mat-list>

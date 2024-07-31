@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AsyncPipe, NgClass, NgForOf } from '@angular/common';
+import { AsyncPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { select, Store } from '@ngrx/store';
@@ -11,7 +11,7 @@ import { RecipeListItem } from '../models/recipe-list-item';
 @Component({
   selector: 'app-recipes-list-facade',
   standalone: true,
-  imports: [NgForOf, NgClass, AsyncPipe, MatListModule, MatIconModule],
+  imports: [NgForOf, NgIf, NgClass, AsyncPipe, MatListModule, MatIconModule],
   templateUrl: './recipes-list-facade.component.html',
   styleUrl: './recipes-list-facade.component.scss',
 })

@@ -25,18 +25,20 @@ export const selectRecipeListItems = createSelector(
   selectSelectedIngredientIds,
   (recipes, ingredients, selectedIngredientIds): RecipeListItem[] =>
     recipes.map((recipe: Recipe) => {
-      const ingredientNames = recipe.ingredientIds.map(
-        (id) =>
-          ingredients.find((ingredient) => ingredient.id === id)?.name ||
-          'Unknown Ingredient'
-      );
-      const isHighlighted = selectedIngredientIds.some((selectedId) =>
-        recipe.ingredientIds.includes(selectedId)
-      );
+      const ingredientsList = recipe.ingredientIds.map((id) => {
+        return {
+          name:
+            ingredients.find((ing) => ing.id === id)?.name ||
+            'Unknown Ingredient',
+          isHighlighted: selectedIngredientIds.includes(id),
+        };
+      });
+
+      const isHighlighted = ingredientsList.some((ing) => ing.isHighlighted);
 
       return {
         ...recipe,
-        ingredientNames,
+        ingredientsList,
         isHighlighted,
       };
     })

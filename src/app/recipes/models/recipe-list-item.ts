@@ -1,6 +1,6 @@
 import { Recipe } from './recipe.model';
 
 export interface RecipeListItem extends Recipe {
-  ingredientNames: string[];
+  ingredientsList: { name: string; isHighlighted: boolean }[];
   isHighlighted: boolean;
 }
