@@ -29,11 +29,7 @@ describe('RecipesService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        RecipesService,
-        provideHttpClient(),
-        provideHttpClientTesting(),
-      ],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     });
 
     service = TestBed.inject(RecipesService);

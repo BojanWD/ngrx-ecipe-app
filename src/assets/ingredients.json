@@ -1,0 +1,72 @@
+{
+  "ingredients": [
+    {
+      "id": 0,
+      "name": "Cabbage"
+    },
+    {
+      "id": 1,
+      "name": "Pork"
+    },
+    {
+      "id": 2,
+      "name": "Beef"
+    },
+    {
+      "id": 3,
+      "name": "Sausage"
+    },
+    {
+      "id": 4,
+      "name": "Rice"
+    },
+    {
+      "id": 5,
+      "name": "Onion"
+    },
+    {
+      "id": 6,
+      "name": "Garlic"
+    },
+    {
+      "id": 7,
+      "name": "Lamb"
+    },
+    {
+      "id": 8,
+      "name": "Kajmak"
+    },
+    {
+      "id": 9,
+      "name": "Flour"
+    },
+    {
+      "id": 10,
+      "name": "Egg"
+    },
+    {
+      "id": 11,
+      "name": "Bread Crumbs"
+    },
+    {
+      "id": 12,
+      "name": "Ajvar"
+    },
+    {
+      "id": 13,
+      "name": "Beans"
+    },
+    {
+      "id": 14,
+      "name": "Red Bell Peppers"
+    },
+    {
+      "id": 15,
+      "name": "Eggplant"
+    },
+    {
+      "id": 16,
+      "name": "Chilli Peppers"
+    }
+  ]
+}
