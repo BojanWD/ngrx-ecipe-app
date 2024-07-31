@@ -6,12 +6,12 @@ import {
 } from '@angular/common/http/testing';
 import { RecipesService } from './recipes.service';
 import { RecipeData } from './models/recipe-data.interface';
-import { Recipe } from './models/recipe.model';
 
 describe('RecipesService', () => {
   let service: RecipesService;
   let httpTesting: HttpTestingController;
 
+  const recipesUrl = 'assets/recipes.json';
   const mockRecipes: RecipeData[] = [
     {
       id: 0,
@@ -40,20 +40,40 @@ describe('RecipesService', () => {
     httpTesting = TestBed.inject(HttpTestingController);
   });
 
+  afterEach(() => {
+    httpTesting.verify();
+  });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should retrieve all recipes', () => {
-    service.getAllRecipes().subscribe((recipes: Recipe[]) => {
-      expect(recipes.length).toBe(2);
-      expect(recipes[0].name).toBe('Sarma');
-      expect(recipes[1].name).toBe('Ćevap');
+  it('should fetch all recipes', () => {
+    service.getAllRecipes().subscribe((response: { recipes: RecipeData[] }) => {
+      expect(response.recipes.length).toBe(2);
+      expect(response.recipes[0].name).toBe('Sarma');
+      expect(response.recipes[1].name).toBe('Ćevap');
     });
 
-    const req = httpTesting.expectOne('assets/recipes.json');
+    const req = httpTesting.expectOne(recipesUrl);
     expect(req.request.method).toBe('GET');
     req.flush({ recipes: mockRecipes });
-    httpTesting.verify();
+  });
+
+  it('should handle error if recipes request fails', () => {
+    const errorMessage =
+      'There was an unexpected error! Please contact the IT support for more details.';
+
+    service.getAllRecipes().subscribe({
+      next: () => fail('expected an error, not recipes'),
+      error: (error: string) => expect(error).toBe(errorMessage),
+    });
+
+    const req = httpTesting.expectOne(recipesUrl);
+    expect(req.request.method).toBe('GET');
+    req.flush('Something went wrong', {
+      status: 500,
+      statusText: 'Server Error',
+    });
   });
 });
