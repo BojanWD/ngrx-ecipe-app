@@ -1,1 +1,9 @@
-<p>recipes-list-facade works!</p>
+<mat-list>
+  <h2>Recipes <mat-icon aria-label="Recipes icon" fontIcon="restaurant_menu"></mat-icon></h2>
+  @for (recipe of recipes$ | async; track recipe.id) {
+  <mat-list-item>
+    <span matListItemTitle>{{recipe.name}}</span>
+    <span>Ingredients</span>
+  </mat-list-item>
+  }
+</mat-list>
