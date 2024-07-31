@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { RecipesService } from '../recipes.service';
-import * as RecipeActions from './recipes.actions';
 import { Recipe } from '../models/recipe.model';
+import * as RecipeActions from './recipes.actions';
 
 @Injectable()
 export class RecipesEffects {

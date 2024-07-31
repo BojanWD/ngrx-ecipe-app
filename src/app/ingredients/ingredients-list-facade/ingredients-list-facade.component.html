@@ -1,0 +1,8 @@
+<mat-selection-list>
+  <h2>Ingredients <mat-icon aria-label="Recipes icon" fontIcon="fastfood"></mat-icon></h2>
+  @for (ingredient of ingredients$ | async; track ingredient.id) {
+  <mat-list-option>
+    <span>{{ingredient.name}}</span>
+  </mat-list-option>
+  }
+</mat-selection-list>
