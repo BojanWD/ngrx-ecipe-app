@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { RecipesService } from '../recipes.service';
 import { Recipe } from '../models/recipe.model';
 import * as RecipeActions from './recipes.actions';
@@ -11,7 +11,7 @@ export class RecipesEffects {
   loadRecipes$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RecipeActions.loadRecipes),
-      mergeMap(() =>
+      switchMap(() =>
         this.recipeService.getAllRecipes().pipe(
           map((responseData) =>
             RecipeActions.loadRecipesSuccess({
@@ -27,7 +27,7 @@ export class RecipesEffects {
   );
 
   constructor(
-    private actions$: Actions,
-    private recipeService: RecipesService
+    private readonly actions$: Actions,
+    private readonly recipeService: RecipesService
   ) {}
 }

@@ -28,9 +28,7 @@ export const selectRecipeListItems = createSelector(
     recipes.map((recipe: Recipe) => {
       const ingredientsList = recipe.ingredientIds.map((id) => {
         return {
-          name:
-            ingredients.find((ing) => ing.id === id)?.name ||
-            'Unknown Ingredient',
+          name: ingredients.find((ing) => ing.id === id)?.name || '/',
           isHighlighted: selectedIngredientIds.includes(id),
         };
       });

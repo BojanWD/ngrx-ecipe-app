@@ -14,3 +14,8 @@ export const selectIngredients = createAction(
   '[Ingredients] Select Ingredients',
   props<{ ingredientIds: number[] }>()
 );
+
+export const hydrateSelectedIngredients = createAction(
+  '[Ingredients] Hydrate Selected Ingredients',
+  props<{ selectedIngredientIds: number[] }>()
+);

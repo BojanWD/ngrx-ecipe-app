@@ -4,6 +4,7 @@ import {
   loadIngredientsSuccess,
   loadIngredientsFailure,
   selectIngredients,
+  hydrateSelectedIngredients,
 } from './ingredients.actions';
 import { Ingredient } from '../models/ingredient.model';
 
@@ -30,5 +31,9 @@ export const ingredientReducer = createReducer(
   on(selectIngredients, (state, { ingredientIds }) => ({
     ...state,
     selectedIngredientIds: ingredientIds,
+  })),
+  on(hydrateSelectedIngredients, (state, { selectedIngredientIds }) => ({
+    ...state,
+    selectedIngredientIds,
   }))
 );
