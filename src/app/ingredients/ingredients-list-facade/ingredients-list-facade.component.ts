@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
   loadIngredients,
@@ -17,6 +17,7 @@ import {
   selectIngredientsLoading,
   selectSelectedIngredientIds,
 } from '../store/ingredients.selectors';
+import { IngredientsState } from '../store/ingredients.reducer';
 
 @Component({
   selector: 'app-ingredients-list-facade',
@@ -34,20 +35,15 @@ import {
   styleUrl: './ingredients-list-facade.component.scss',
 })
 export class IngredientsListFacadeComponent implements OnInit {
-  ingredients$: Observable<Ingredient[]> = this.store.pipe(
-    select(selectAllIngredients)
+  ingredients$: Observable<Ingredient[]> =
+    this.store.select(selectAllIngredients);
+  selectedIngredientIds$: Observable<number[]> = this.store.select(
+    selectSelectedIngredientIds
   );
-  selectedIngredientIds$: Observable<number[]> = this.store.pipe(
-    select(selectSelectedIngredientIds)
-  );
-  error$: Observable<string | null> = this.store.pipe(
-    select(selectIngredientsError)
-  );
-  loading$: Observable<boolean> = this.store.pipe(
-    select(selectIngredientsLoading)
-  );
+  error$: Observable<string | null> = this.store.select(selectIngredientsError);
+  loading$: Observable<boolean> = this.store.select(selectIngredientsLoading);
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store<IngredientsState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadIngredients());

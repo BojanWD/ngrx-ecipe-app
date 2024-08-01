@@ -6,6 +6,7 @@ import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { IngredientsService } from '../ingredients.service';
 import { Ingredient } from '../models/ingredient.model';
 import * as IngredientActions from './ingredients.actions';
+import { IngredientsState } from './ingredients.reducer';
 
 @Injectable()
 export class IngredientsEffects {
@@ -60,7 +61,7 @@ export class IngredientsEffects {
   );
 
   constructor(
-    private readonly store: Store,
+    private readonly store: Store<IngredientsState>,
     private readonly actions$: Actions,
     private readonly ingredientsService: IngredientsService
   ) {}

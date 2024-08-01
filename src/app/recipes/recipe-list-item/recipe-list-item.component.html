@@ -1,6 +1,6 @@
 @if (recipe) {
 <mat-list-item [ngClass]="{completed: recipe.completed}">
-  <div>
+  <div (click)="selectRecipe()">
     <span class="recipe-title" [ngClass]="{ highlighted: recipe.isHighlighted && !recipe.completed }">
       {{ recipe.name }}
     </span>

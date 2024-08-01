@@ -15,7 +15,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter([]),
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideStore({ recipes: recipeReducer, ingredients: ingredientReducer }),
+    provideStore({
+      recipes: recipeReducer,
+      ingredients: ingredientReducer,
+    }),
     provideEffects(RecipesEffects, IngredientsEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],

@@ -7,6 +7,6 @@
   <div class="error-message">{{error}}</div>
   }
   @for (recipe of recipes$ | async; track recipe.id) {
-  <app-recipe-list-item [recipe]="recipe"></app-recipe-list-item>
+  <app-recipe-list-item [recipe]="recipe" (recipeSelect)="onRecipeClick($event)"></app-recipe-list-item>
   }
 </mat-list>

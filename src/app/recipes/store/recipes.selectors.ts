@@ -20,6 +20,11 @@ export const selectRecipesError = createSelector(
   (state) => state.error
 );
 
+export const selectCart = createSelector(
+  selectRecipesState,
+  (state) => state.cart
+);
+
 export const selectRecipeListItems = createSelector(
   selectAllRecipes,
   selectAllIngredients,
