@@ -6,12 +6,12 @@ import {
   loadRecipesFailure,
 } from './recipes.actions';
 
-export interface RecipeState {
+export interface RecipesState {
   recipes: Recipe[];
   error: string | null;
 }
 
-export const initialState: RecipeState = {
+export const initialState: RecipesState = {
   recipes: [],
   error: null,
 };

@@ -18,9 +18,9 @@ export class RecipesEffects {
               recipes: responseData.recipes.map((recipe) => new Recipe(recipe)),
             })
           ),
-          catchError((error) =>
-            of(RecipeActions.loadRecipesFailure({ error: error.message }))
-          )
+          catchError((error) => {
+            return of(RecipeActions.loadRecipesFailure({ error }));
+          })
         )
       )
     )

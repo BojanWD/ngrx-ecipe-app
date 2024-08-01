@@ -7,13 +7,13 @@ import {
 } from './ingredients.actions';
 import { Ingredient } from '../models/ingredient.model';
 
-export interface IngredientState {
+export interface IngredientsState {
   ingredients: Ingredient[];
   selectedIngredientIds: number[];
   error: string | null;
 }
 
-export const initialState: IngredientState = {
+export const initialState: IngredientsState = {
   ingredients: [],
   selectedIngredientIds: [],
   error: null,

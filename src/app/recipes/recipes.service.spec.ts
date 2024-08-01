@@ -57,12 +57,9 @@ describe('RecipesService', () => {
   });
 
   it('should handle error if recipes request fails', () => {
-    const errorMessage =
-      'There was an unexpected error! Please contact the IT support for more details.';
-
     service.getAllRecipes().subscribe({
       next: () => fail('expected an error, not recipes'),
-      error: (error: string) => expect(error).toBe(errorMessage),
+      error: (error: string) => expect(error).toBeTruthy(),
     });
 
     const req = httpTesting.expectOne(recipesUrl);

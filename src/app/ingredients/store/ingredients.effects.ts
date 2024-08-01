@@ -21,9 +21,7 @@ export class IngredientsEffects {
             })
           ),
           catchError((error) =>
-            of(
-              IngredientActions.loadIngredientsFailure({ error: error.message })
-            )
+            of(IngredientActions.loadIngredientsFailure({ error }))
           )
         )
       )

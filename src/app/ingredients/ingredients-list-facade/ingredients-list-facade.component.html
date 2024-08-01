@@ -1,5 +1,8 @@
 <mat-selection-list (selectionChange)="onIngredientSelect($event)">
-  <h2>Ingredients <mat-icon aria-label="Recipes icon" fontIcon="fastfood"></mat-icon></h2>
+  <h2 class="title">Ingredients <mat-icon aria-label="Recipes icon" fontIcon="fastfood"></mat-icon></h2>
+  @if (error$ | async; as error) {
+  <div class="error-message">{{error}}</div>
+  }
   @for (ingredient of ingredients$ | async; track ingredient.id) {
   <mat-list-option [value]="ingredient.id">
     <span>{{ingredient.name}}</span>
