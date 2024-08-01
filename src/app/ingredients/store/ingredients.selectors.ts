@@ -9,6 +9,11 @@ export const selectAllIngredients = createSelector(
   (state) => state.ingredients
 );
 
+export const selectIngredientsLoading = createSelector(
+  selectIngredientsState,
+  (state) => state.loading
+);
+
 export const selectIngredientsError = createSelector(
   selectIngredientsState,
   (state) => state.error

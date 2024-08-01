@@ -19,3 +19,8 @@ export const hydrateSelectedIngredients = createAction(
   '[Ingredients] Hydrate Selected Ingredients',
   props<{ selectedIngredientIds: number[] }>()
 );
+
+export const setLoading = createAction(
+  '[Ingredients] Set Loading',
+  props<{ loading: boolean }>()
+);

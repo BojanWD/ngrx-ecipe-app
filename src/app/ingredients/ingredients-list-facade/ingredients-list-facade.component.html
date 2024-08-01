@@ -3,9 +3,15 @@
   @if (error$ | async; as error) {
   <div class="error-message">{{error}}</div>
   }
+  @if (loading$ | async) {
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+  } @else {
   @for (ingredient of ingredients$ | async; track ingredient.id) {
   <mat-list-option [value]="ingredient.id">
     <span>{{ingredient.name}}</span>
   </mat-list-option>
+  }
   }
 </mat-selection-list>

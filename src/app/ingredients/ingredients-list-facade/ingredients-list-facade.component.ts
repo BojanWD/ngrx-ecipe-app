@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
@@ -13,6 +14,7 @@ import { Ingredient } from '../models/ingredient.model';
 import {
   selectAllIngredients,
   selectIngredientsError,
+  selectIngredientsLoading,
   selectSelectedIngredientIds,
 } from '../store/ingredients.selectors';
 
@@ -26,6 +28,7 @@ import {
     AsyncPipe,
     MatListModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './ingredients-list-facade.component.html',
   styleUrl: './ingredients-list-facade.component.scss',
@@ -39,6 +42,9 @@ export class IngredientsListFacadeComponent implements OnInit {
   );
   error$: Observable<string | null> = this.store.pipe(
     select(selectIngredientsError)
+  );
+  loading$: Observable<boolean> = this.store.pipe(
+    select(selectIngredientsLoading)
   );
 
   constructor(private readonly store: Store) {}

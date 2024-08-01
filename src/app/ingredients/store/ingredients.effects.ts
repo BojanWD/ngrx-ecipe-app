@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { IngredientsService } from '../ingredients.service';
 import { Ingredient } from '../models/ingredient.model';
 import * as IngredientActions from './ingredients.actions';
-import {
-  hydrateSelectedIngredients,
-  loadIngredientsSuccess,
-  selectIngredients,
-} from './ingredients.actions';
 
 @Injectable()
 export class IngredientsEffects {
@@ -35,33 +31,36 @@ export class IngredientsEffects {
 
   hydrateSelectedIngredients$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadIngredientsSuccess),
+      ofType(IngredientActions.loadIngredientsSuccess),
+      tap(() =>
+        this.store.dispatch(IngredientActions.setLoading({ loading: true }))
+      ),
       delay(300),
-      map(() => {
-        const savedIngredients = localStorage.getItem('selectedIngredients');
-        const selectedIngredientIds = savedIngredients
-          ? JSON.parse(savedIngredients)
-          : [];
-        return hydrateSelectedIngredients({ selectedIngredientIds });
-      })
+      map(() =>
+        IngredientActions.hydrateSelectedIngredients({
+          selectedIngredientIds:
+            this.ingredientsService.getSelectedIngredientIds(),
+        })
+      ),
+      tap(() =>
+        this.store.dispatch(IngredientActions.setLoading({ loading: false }))
+      )
     )
   );
 
   saveSelectedIngredients$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(selectIngredients),
-        tap(({ ingredientIds }) => {
-          localStorage.setItem(
-            'selectedIngredients',
-            JSON.stringify(ingredientIds)
-          );
-        })
+        ofType(IngredientActions.selectIngredients),
+        tap(({ ingredientIds }) =>
+          this.ingredientsService.setSelectedIngredientIds(ingredientIds)
+        )
       ),
     { dispatch: false }
   );
 
   constructor(
+    private readonly store: Store,
     private readonly actions$: Actions,
     private readonly ingredientsService: IngredientsService
   ) {}

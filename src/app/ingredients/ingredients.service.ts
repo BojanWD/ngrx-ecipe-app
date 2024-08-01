@@ -17,4 +17,29 @@ export class IngredientsService {
       .get<{ ingredients: IngredientData[] }>(this.jsonURL)
       .pipe(catchError(handleError));
   }
+
+  getSelectedIngredientIds(): number[] {
+    try {
+      const savedIngredients = localStorage.getItem('selectedIngredients');
+      const selectedIngredientIds = savedIngredients
+        ? JSON.parse(savedIngredients)
+        : [];
+
+      return selectedIngredientIds;
+    } catch (error) {
+      window.alert(error);
+      return [];
+    }
+  }
+
+  setSelectedIngredientIds(ingredientIds: number[]): void {
+    try {
+      localStorage.setItem(
+        'selectedIngredients',
+        JSON.stringify(ingredientIds)
+      );
+    } catch (error) {
+      window.alert(error);
+    }
+  }
 }
