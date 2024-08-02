@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Ingredient } from '../../ingredients/models/ingredient.model';
-import { addToCart, selectRecipe } from './cart.actions';
+import { addToCart, clearCart, selectRecipe } from './cart.actions';
 
 export interface CartState {
   cart: { recipeName: string; ingredients: Ingredient[] };
@@ -19,5 +19,9 @@ export const cartReducer = createReducer(
   on(addToCart, (state, { recipeName, ingredients }) => ({
     ...state,
     cart: { recipeName, ingredients },
+  })),
+  on(clearCart, (state) => ({
+    ...state,
+    cart: { recipeName: '', ingredients: [] },
   }))
 );

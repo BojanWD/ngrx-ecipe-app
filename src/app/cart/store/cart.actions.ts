@@ -11,3 +11,5 @@ export const addToCart = createAction(
   '[Cart] Add To Cart',
   props<{ recipeName: string; ingredients: Ingredient[] }>()
 );
+
+export const clearCart = createAction('[Cart] Clear Cart');

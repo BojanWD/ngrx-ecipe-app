@@ -1,10 +1,9 @@
 <div class="cart-container">
   <h2 class="title">Cart <mat-icon aria-label="Cart icon" fontIcon="add_shopping_cart"></mat-icon></h2>
   @if (cart$ | async; as cart) {
+  @if (cart.ingredients.length > 0) {
   <div class="recipe-ing-container">
-    @if (cart.ingredients.length > 0) {
     <h3>Missing ingredients for {{cart.recipeName}}</h3>
-    }
     <mat-chip-set>
       @for (ingredient of cart.ingredients; track ingredient.id) {
       <mat-chip>
@@ -12,10 +11,11 @@
       </mat-chip>
       }
     </mat-chip-set>
-
-    @if (cart.ingredients.length > 0) {
-    <button class="checkout-btn" color="primary" mat-flat-button>Checkout</button>
-    }
+    <div class="actions-container">
+      <button color="primary" mat-flat-button>Checkout cart</button>
+      <button color="warn" mat-raised-button (click)="clearCart()">Clear cart</button>
+    </div>
   </div>
+  }
   }
 </div>

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Ingredient } from '../../ingredients/models/ingredient.model';
 import { RecipesState } from '../../recipes/store/recipes.reducer';
 import { selectCart } from '../store/cart.selector';
+import { clearCart } from '../store/cart.actions';
 
 @Component({
   selector: 'app-cart',
@@ -21,4 +22,8 @@ export class CartComponent {
     this.store.select(selectCart);
 
   constructor(private readonly store: Store<RecipesState>) {}
+
+  clearCart(): void {
+    this.store.dispatch(clearCart());
+  }
 }
