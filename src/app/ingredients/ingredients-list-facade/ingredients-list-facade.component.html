@@ -1,7 +1,7 @@
 <mat-selection-list [ngModel]="(selectedIngredientIds$ | async)" (selectionChange)="onIngredientSelect($event)">
   <h2 class="title">Ingredients <mat-icon aria-label="Ingredients icon" fontIcon="fastfood"></mat-icon></h2>
   @if (error$ | async; as error) {
-  <div class="error-message">{{error}}</div>
+  <span class="message error">{{error}}</span>
   }
   @if (loading$ | async) {
   <div class="spinner-container">

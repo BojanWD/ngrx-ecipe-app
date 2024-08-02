@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { Ingredient } from '../../ingredients/models/ingredient.model';
 import {
   selectCart,
+  selectCartCheckoutSuccess,
   selectCartError,
   selectCartLoading,
 } from '../store/cart.selector';
@@ -34,6 +35,7 @@ export class CartComponent {
     this.store.select(selectCart);
   error$ = this.store.select(selectCartError);
   loading$ = this.store.select(selectCartLoading);
+  checkoutSuccess$ = this.store.select(selectCartCheckoutSuccess);
 
   constructor(private readonly store: Store<AppState>) {}
 

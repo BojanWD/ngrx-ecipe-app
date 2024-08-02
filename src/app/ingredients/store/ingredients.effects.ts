@@ -5,11 +5,13 @@ import { of } from 'rxjs';
 import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { IngredientsService } from '../ingredients.service';
 import { Ingredient } from '../models/ingredient.model';
-import * as IngredientActions from './ingredients.actions';
 import { AppState } from '../../app-state';
+import * as IngredientActions from './ingredients.actions';
 
 @Injectable()
 export class IngredientsEffects {
+  private readonly selectedIngredientsFakeDelay = 300;
+
   loadIngredients$ = createEffect(() =>
     this.actions$.pipe(
       ofType(IngredientActions.loadIngredients),
@@ -36,7 +38,7 @@ export class IngredientsEffects {
       tap(() =>
         this.store.dispatch(IngredientActions.setLoading({ loading: true }))
       ),
-      delay(300),
+      delay(this.selectedIngredientsFakeDelay),
       map(() =>
         IngredientActions.hydrateSelectedIngredients({
           selectedIngredientIds:

@@ -8,11 +8,15 @@ import {
   selectSelectedIngredientIds,
 } from '../../ingredients/store/ingredients.selectors';
 import { AppState } from '../../app-state';
-import * as CartActions from './cart.actions';
 import { setLoading } from './cart.actions';
+import * as CartActions from './cart.actions';
 
 @Injectable()
 export class CartEffects {
+  private readonly checkoutFailPercentage = 0.1;
+  private readonly checkoutErrorMessage = 'Checkout failed! Please try again';
+  private readonly checkoutFakeDelay = 500;
+
   addToCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.selectRecipe),
@@ -44,12 +48,12 @@ export class CartEffects {
     this.actions$.pipe(
       ofType(CartActions.checkout),
       tap(() => this.store.dispatch(setLoading({ loading: true }))),
-      delay(500),
+      delay(this.checkoutFakeDelay),
       switchMap(() => {
         return of(null).pipe(
           switchMap(() => {
-            if (Math.random() < 0.1) {
-              throw new Error('Checkout failed! Please try again later');
+            if (Math.random() < this.checkoutFailPercentage) {
+              throw new Error(this.checkoutErrorMessage);
             }
             return of(CartActions.checkoutSuccess());
           }),

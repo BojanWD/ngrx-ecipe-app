@@ -24,6 +24,9 @@
   </div>
   }
   @if (error$ | async; as error) {
-  <div class="error-message">{{error}}</div>
+  <span class="message error">{{error}}</span>
+  }
+  @if (checkoutSuccess$ | async) {
+  <span class="message success">Purchase successful! Enjoy the meal!</span>
   }
 </div>

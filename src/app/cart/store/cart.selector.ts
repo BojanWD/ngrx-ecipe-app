@@ -17,3 +17,8 @@ export const selectCartError = createSelector(
   selectCartState,
   (state) => state.error
 );
+
+export const selectCartCheckoutSuccess = createSelector(
+  selectCartState,
+  (state) => state.checkoutSuccess
+);
