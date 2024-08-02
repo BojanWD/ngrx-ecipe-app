@@ -9,6 +9,8 @@ import { RecipesEffects } from './recipes/store/recipes.effects';
 import { recipeReducer } from './recipes/store/recipes.reducer';
 import { IngredientsEffects } from './ingredients/store/ingredients.effects';
 import { ingredientReducer } from './ingredients/store/ingredients.reducer';
+import { cartReducer } from './cart/store/cart.reducer';
+import { CartEffects } from './cart/store/cart.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,8 +20,9 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       recipes: recipeReducer,
       ingredients: ingredientReducer,
+      cart: cartReducer,
     }),
-    provideEffects(RecipesEffects, IngredientsEffects),
+    provideEffects(RecipesEffects, IngredientsEffects, CartEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };

@@ -5,9 +5,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectCart } from '../../recipes/store/recipes.selectors';
 import { Ingredient } from '../../ingredients/models/ingredient.model';
 import { RecipesState } from '../../recipes/store/recipes.reducer';
+import { selectCart } from '../store/cart.selector';
 
 @Component({
   selector: 'app-cart',

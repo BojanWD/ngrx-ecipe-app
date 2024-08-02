@@ -8,11 +8,11 @@ import {
   selectRecipeListItems,
   selectRecipesError,
 } from '../store/recipes.selectors';
-import { loadRecipes, selectRecipe } from '../store/recipes.actions';
+import { loadRecipes } from '../store/recipes.actions';
 import { RecipeListItem } from '../models/recipe-list-item';
 import { RecipeListItemComponent } from '../recipe-list-item/recipe-list-item.component';
 import { RecipesState } from '../store/recipes.reducer';
-import { Recipe } from '../models/recipe.model';
+import { selectRecipe } from '../../cart/store/cart.actions';
 
 @Component({
   selector: 'app-recipes-list-facade',
