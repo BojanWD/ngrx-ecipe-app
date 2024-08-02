@@ -1,13 +1,13 @@
 .cart-container {
   padding: 0.5rem 0;
-}
 
-.recipe-ing-container {
-  margin-left: 1rem;
-}
+  .recipe-ing-container {
+    margin: 0 0 1rem 1rem;
+  }
 
-.actions-container {
-  margin-top: 1.5rem;
-  display: flex;
-  gap: 2rem;
+  .actions-container {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 2rem;
+  }
 }

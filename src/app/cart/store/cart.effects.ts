@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   selectAllIngredients,
@@ -9,6 +9,7 @@ import {
 } from '../../ingredients/store/ingredients.selectors';
 import { AppState } from '../../app-state';
 import * as CartActions from './cart.actions';
+import { setLoading } from './cart.actions';
 
 @Injectable()
 export class CartEffects {
@@ -42,6 +43,8 @@ export class CartEffects {
   checkout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.checkout),
+      tap(() => this.store.dispatch(setLoading({ loading: true }))),
+      delay(500),
       switchMap(() => {
         return of(null).pipe(
           switchMap(() => {
@@ -52,7 +55,8 @@ export class CartEffects {
           }),
           catchError((error) => of(CartActions.checkoutFailure({ error })))
         );
-      })
+      }),
+      tap(() => this.store.dispatch(setLoading({ loading: false })))
     )
   );
 

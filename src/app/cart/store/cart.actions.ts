@@ -20,3 +20,7 @@ export const checkoutFailure = createAction(
   '[Cart] Checkout Failure',
   props<{ error: string }>()
 );
+export const setLoading = createAction(
+  '[Cart] Set Loading',
+  props<{ loading: boolean }>()
+);

@@ -11,11 +11,13 @@ import {
 
 export interface CartState {
   cart: { recipeName: string; ingredients: Ingredient[] };
+  loading: boolean;
   error: string | null;
 }
 
 export const initialState: CartState = {
   cart: { recipeName: '', ingredients: [] },
+  loading: false,
   error: null,
 };
 
@@ -35,14 +37,17 @@ export const cartReducer = createReducer(
   })),
   on(checkout, (state) => ({
     ...state,
+    loading: true,
     error: null,
   })),
   on(checkoutSuccess, (state) => ({
     ...state,
+    loading: false,
     cart: { recipeName: '', ingredients: [] },
   })),
   on(checkoutFailure, (state, { error }) => ({
     ...state,
+    loading: false,
     error,
   }))
 );

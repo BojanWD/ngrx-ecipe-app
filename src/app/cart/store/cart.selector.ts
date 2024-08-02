@@ -8,6 +8,11 @@ export const selectCart = createSelector(
   (state) => state.cart
 );
 
+export const selectCartLoading = createSelector(
+  selectCartState,
+  (state) => state.loading
+);
+
 export const selectCartError = createSelector(
   selectCartState,
   (state) => state.error

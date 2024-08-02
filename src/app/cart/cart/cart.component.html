@@ -18,6 +18,11 @@
   </div>
   }
   }
+  @if (loading$ | async) {
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+  }
   @if (error$ | async; as error) {
   <div class="error-message">{{error}}</div>
   }
