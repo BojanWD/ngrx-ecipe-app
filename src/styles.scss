@@ -1,3 +1,5 @@
+@import "styles/variables";
+
 html,
 body {
   height: 100%;
@@ -17,5 +19,18 @@ body {
 
 .error-message {
   margin: 1rem;
-  color: #f44336;
+  color: $error-color;
+}
+.message {
+  margin: 1rem;
+  font-weight: 500;
+  font-size: medium;
+
+  &.success {
+    color: $success-color;
+  }
+
+  &.error {
+    color: $error-color;
+  }
 }
