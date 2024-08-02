@@ -17,7 +17,7 @@ import {
   selectIngredientsLoading,
   selectSelectedIngredientIds,
 } from '../store/ingredients.selectors';
-import { IngredientsState } from '../store/ingredients.reducer';
+import { AppState } from '../../app-state';
 
 @Component({
   selector: 'app-ingredients-list-facade',
@@ -43,7 +43,7 @@ export class IngredientsListFacadeComponent implements OnInit {
   error$: Observable<string | null> = this.store.select(selectIngredientsError);
   loading$: Observable<boolean> = this.store.select(selectIngredientsLoading);
 
-  constructor(private readonly store: Store<IngredientsState>) {}
+  constructor(private readonly store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadIngredients());

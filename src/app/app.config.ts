@@ -11,13 +11,14 @@ import { IngredientsEffects } from './ingredients/store/ingredients.effects';
 import { ingredientReducer } from './ingredients/store/ingredients.reducer';
 import { cartReducer } from './cart/store/cart.reducer';
 import { CartEffects } from './cart/store/cart.effects';
+import { AppState } from './app-state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([]),
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideStore({
+    provideStore<AppState>({
       recipes: recipeReducer,
       ingredients: ingredientReducer,
       cart: cartReducer,

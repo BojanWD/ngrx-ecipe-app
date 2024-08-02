@@ -7,6 +7,7 @@ import {
   selectSelectedIngredientIds,
 } from '../../ingredients/store/ingredients.selectors';
 import * as CartActions from './cart.actions';
+import { AppState } from '../../app-state';
 
 @Injectable()
 export class CartEffects {
@@ -38,7 +39,7 @@ export class CartEffects {
   );
 
   constructor(
-    private readonly store: Store,
+    private readonly store: Store<AppState>,
     private readonly actions$: Actions
   ) {}
 }

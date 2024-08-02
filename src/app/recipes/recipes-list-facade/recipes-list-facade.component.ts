@@ -11,8 +11,8 @@ import {
 import { loadRecipes } from '../store/recipes.actions';
 import { RecipeListItem } from '../models/recipe-list-item';
 import { RecipeListItemComponent } from '../recipe-list-item/recipe-list-item.component';
-import { RecipesState } from '../store/recipes.reducer';
 import { selectRecipe } from '../../cart/store/cart.actions';
+import { AppState } from '../../app-state';
 
 @Component({
   selector: 'app-recipes-list-facade',
@@ -34,7 +34,7 @@ export class RecipesListFacadeComponent implements OnInit {
   );
   error$: Observable<string | null> = this.store.select(selectRecipesError);
 
-  constructor(private readonly store: Store<RecipesState>) {}
+  constructor(private readonly store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadRecipes());
