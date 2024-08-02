@@ -9,7 +9,7 @@
   </div>
   } @else {
   @for (ingredient of ingredients$ | async; track ingredient.id) {
-  <mat-list-option [value]="ingredient.id">
+  <mat-list-option color="primary" [value]="ingredient.id">
     <span>{{ingredient.name}}</span>
   </mat-list-option>
   }

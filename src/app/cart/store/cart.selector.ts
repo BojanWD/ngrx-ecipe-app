@@ -7,3 +7,8 @@ export const selectCart = createSelector(
   selectCartState,
   (state) => state.cart
 );
+
+export const selectCartError = createSelector(
+  selectCartState,
+  (state) => state.error
+);

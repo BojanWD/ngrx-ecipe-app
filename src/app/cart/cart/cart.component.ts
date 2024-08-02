@@ -6,8 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../../ingredients/models/ingredient.model';
-import { selectCart } from '../store/cart.selector';
-import { clearCart } from '../store/cart.actions';
+import { selectCart, selectCartError } from '../store/cart.selector';
+import { checkout, clearCart } from '../store/cart.actions';
 import { AppState } from '../../app-state';
 
 @Component({
@@ -20,8 +20,13 @@ import { AppState } from '../../app-state';
 export class CartComponent {
   cart$: Observable<{ recipeName: string; ingredients: Ingredient[] }> =
     this.store.select(selectCart);
+  error$ = this.store.select(selectCartError);
 
   constructor(private readonly store: Store<AppState>) {}
+
+  checkout(): void {
+    this.store.dispatch(checkout());
+  }
 
   clearCart(): void {
     this.store.dispatch(clearCart());

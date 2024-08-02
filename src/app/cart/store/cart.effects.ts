@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 import {
   selectAllIngredients,
   selectSelectedIngredientIds,
 } from '../../ingredients/store/ingredients.selectors';
-import * as CartActions from './cart.actions';
 import { AppState } from '../../app-state';
+import * as CartActions from './cart.actions';
 
 @Injectable()
 export class CartEffects {
@@ -35,6 +36,23 @@ export class CartEffects {
           )
         )
       )
+    )
+  );
+
+  checkout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CartActions.checkout),
+      switchMap(() => {
+        return of(null).pipe(
+          switchMap(() => {
+            if (Math.random() < 0.1) {
+              throw new Error('Checkout failed! Please try again later');
+            }
+            return of(CartActions.checkoutSuccess());
+          }),
+          catchError((error) => of(CartActions.checkoutFailure({ error })))
+        );
+      })
     )
   );
 

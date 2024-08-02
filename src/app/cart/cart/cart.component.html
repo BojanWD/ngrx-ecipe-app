@@ -12,10 +12,13 @@
       }
     </mat-chip-set>
     <div class="actions-container">
-      <button color="primary" mat-flat-button>Checkout cart</button>
+      <button color="primary" mat-flat-button (click)="checkout()">Checkout cart</button>
       <button color="warn" mat-raised-button (click)="clearCart()">Clear cart</button>
     </div>
   </div>
   }
+  }
+  @if (error$ | async; as error) {
+  <div class="error-message">{{error}}</div>
   }
 </div>

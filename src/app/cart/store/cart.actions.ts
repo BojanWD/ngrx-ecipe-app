@@ -13,3 +13,10 @@ export const addToCart = createAction(
 );
 
 export const clearCart = createAction('[Cart] Clear Cart');
+
+export const checkout = createAction('[Cart] Checkout');
+export const checkoutSuccess = createAction('[Cart] Checkout Success');
+export const checkoutFailure = createAction(
+  '[Cart] Checkout Failure',
+  props<{ error: string }>()
+);
