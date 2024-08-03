@@ -1,7 +1,7 @@
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { RecipeListItem } from '../models/recipe-list-item';
+import { RecipeListItem } from '../models/recipe-list-item.interface';
 
 @Component({
   selector: 'app-recipe-list-item',

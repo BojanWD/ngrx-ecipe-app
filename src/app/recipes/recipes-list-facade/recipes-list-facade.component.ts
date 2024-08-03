@@ -9,7 +9,7 @@ import {
   selectRecipesError,
 } from '../store/recipes.selectors';
 import { loadRecipes } from '../store/recipes.actions';
-import { RecipeListItem } from '../models/recipe-list-item';
+import { RecipeListItem } from '../models/recipe-list-item.interface';
 import { RecipeListItemComponent } from '../recipe-list-item/recipe-list-item.component';
 import { selectRecipe } from '../../cart/store/cart.actions';
 import { AppState } from '../../app-state';

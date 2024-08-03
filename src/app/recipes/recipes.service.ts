@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { RecipeData } from './models/recipe-data.interface';
-import { handleError } from '../shared/classes/error-handler';
+import { handleError } from '../shared/error-handler';
 
 @Injectable({
   providedIn: 'root',

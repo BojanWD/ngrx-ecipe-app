@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Ingredient } from '../../ingredients/models/ingredient.model';
-import { RecipeListItem } from '../../recipes/models/recipe-list-item';
+import { RecipeListItem } from '../../recipes/models/recipe-list-item.interface';
 
 export const selectRecipe = createAction(
   '[Cart] Select Recipe',

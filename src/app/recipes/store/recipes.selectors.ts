@@ -5,7 +5,7 @@ import {
   selectSelectedIngredientIds,
 } from '../../ingredients/store/ingredients.selectors';
 import { Recipe } from '../models/recipe.model';
-import { RecipeListItem } from '../models/recipe-list-item';
+import { RecipeListItem } from '../models/recipe-list-item.interface';
 
 export const selectRecipesState =
   createFeatureSelector<RecipesState>('recipes');
