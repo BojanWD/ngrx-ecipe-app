@@ -1,6 +1,7 @@
 # RecipeApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+Node v18.16.1 and npm v9.5.1 versions were used locally.
 
 ## Development server
 
