@@ -26,11 +26,12 @@ export const cartReducer = createReducer(
   initialState,
   on(selectRecipe, (state, { recipe }) => ({
     ...state,
-    checkoutSuccess: false,
     selectedRecipe: recipe,
   })),
   on(addToCart, (state, { recipeName, ingredients }) => ({
     ...state,
+    checkoutSuccess: false,
+    error: null,
     cart: { recipeName, ingredients },
   })),
   on(checkout, (state) => ({
