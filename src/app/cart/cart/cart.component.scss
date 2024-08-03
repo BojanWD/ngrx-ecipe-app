@@ -1,11 +1,15 @@
-.cart-container {
-  padding: 0.5rem 0;
+:host {
+  width: 20rem;
 
-  .recipe-ing-container {
-    margin: 0 0 1rem 1rem;
-  }
+  .cart-container {
+    padding: 0.5rem 0;
 
-  .checkout-btn {
-    margin-top: 1.5rem;
+    .recipe-ing-container {
+      margin: 0 0 1rem 1rem;
+    }
+
+    .checkout-btn {
+      margin-top: 1.5rem;
+    }
   }
 }

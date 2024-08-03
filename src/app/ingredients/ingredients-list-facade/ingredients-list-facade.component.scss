@@ -1,3 +1,7 @@
-.spinner-container {
-  padding: 1rem;
+:host {
+  width: 15rem;
+
+  .spinner-container {
+    padding: 1rem;
+  }
 }
