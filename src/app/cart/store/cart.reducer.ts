@@ -5,7 +5,6 @@ import {
   checkout,
   checkoutFailure,
   checkoutSuccess,
-  clearCart,
   selectRecipe,
 } from './cart.actions';
 
@@ -33,10 +32,6 @@ export const cartReducer = createReducer(
   on(addToCart, (state, { recipeName, ingredients }) => ({
     ...state,
     cart: { recipeName, ingredients },
-  })),
-  on(clearCart, (state) => ({
-    ...state,
-    cart: { recipeName: '', ingredients: [] },
   })),
   on(checkout, (state) => ({
     ...state,

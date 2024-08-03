@@ -13,7 +13,7 @@ import {
   selectCartError,
   selectCartLoading,
 } from '../store/cart.selector';
-import { checkout, clearCart } from '../store/cart.actions';
+import { checkout } from '../store/cart.actions';
 import { AppState } from '../../app-state';
 
 @Component({
@@ -41,9 +41,5 @@ export class CartComponent {
 
   checkout(): void {
     this.store.dispatch(checkout());
-  }
-
-  clearCart(): void {
-    this.store.dispatch(clearCart());
   }
 }

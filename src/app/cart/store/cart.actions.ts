@@ -12,8 +12,6 @@ export const addToCart = createAction(
   props<{ recipeName: string; ingredients: Ingredient[] }>()
 );
 
-export const clearCart = createAction('[Cart] Clear Cart');
-
 export const checkout = createAction('[Cart] Checkout');
 export const checkoutSuccess = createAction('[Cart] Checkout Success');
 export const checkoutFailure = createAction(
