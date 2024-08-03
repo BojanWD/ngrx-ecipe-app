@@ -7,12 +7,14 @@ import {
   checkoutSuccess,
   selectRecipe,
 } from './cart.actions';
+import { RecipeListItem } from '../../recipes/models/recipe-list-item.interface';
 
 export interface CartState {
   cart: { recipeName: string; ingredients: Ingredient[] };
   loading: boolean;
   error: string | null;
   checkoutSuccess: boolean;
+  selectedRecipe: RecipeListItem | null;
 }
 
 export const initialState: CartState = {
@@ -20,6 +22,7 @@ export const initialState: CartState = {
   loading: false,
   error: null,
   checkoutSuccess: false,
+  selectedRecipe: null,
 };
 
 export const cartReducer = createReducer(
@@ -45,6 +48,7 @@ export const cartReducer = createReducer(
     loading: false,
     checkoutSuccess: true,
     cart: { recipeName: '', ingredients: [] },
+    selectedRecipe: null,
   })),
   on(checkoutFailure, (state, { error }) => ({
     ...state,

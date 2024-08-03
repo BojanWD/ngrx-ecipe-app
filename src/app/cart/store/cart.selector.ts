@@ -22,3 +22,8 @@ export const selectCartCheckoutSuccess = createSelector(
   selectCartState,
   (state) => state.checkoutSuccess
 );
+
+export const selectCartSelectedRecipe = createSelector(
+  selectCartState,
+  (state) => state.selectedRecipe
+);

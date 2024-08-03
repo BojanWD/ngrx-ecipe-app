@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, delay, filter, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   selectAllIngredients,
@@ -9,6 +9,7 @@ import {
 } from '../../ingredients/store/ingredients.selectors';
 import { AppState } from '../../app-state';
 import { setLoading } from './cart.actions';
+import { selectCartSelectedRecipe } from './cart.selector';
 import * as CartActions from './cart.actions';
 
 @Injectable()
@@ -26,17 +27,23 @@ export class CartEffects {
           switchMap((selectedIds) =>
             this.store.pipe(
               select(selectAllIngredients),
-              map((ingredients) => {
-                const unselectedIngredients = ingredients.filter(
-                  (ingredient) =>
-                    recipe.ingredientIds.includes(ingredient.id) &&
-                    !selectedIds.includes(ingredient.id)
-                );
-                return CartActions.addToCart({
-                  recipeName: recipe.name,
-                  ingredients: unselectedIngredients,
-                });
-              })
+              switchMap((ingredients) =>
+                this.store.pipe(
+                  select(selectCartSelectedRecipe),
+                  filter((selectedRecipe) => selectedRecipe !== null),
+                  map(() => {
+                    const unselectedIngredients = ingredients.filter(
+                      (ingredient) =>
+                        recipe.ingredientIds.includes(ingredient.id) &&
+                        !selectedIds.includes(ingredient.id)
+                    );
+                    return CartActions.addToCart({
+                      recipeName: recipe.name,
+                      ingredients: unselectedIngredients,
+                    });
+                  })
+                )
+              )
             )
           )
         )
